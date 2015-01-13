@@ -1,11 +1,17 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
+app.get('/:delay', function (req, res) {
+  setTimeout(function() {
+    res.send('<html><body>Delayed for ' + req.params.delay + 'ms before responding</body></html>');
+  }, req.params.delay);
 })
 
-var server = app.listen(3000, function () {
+app.get('/', function (req, res) {
+  res.send('<html><body>Pass a delay in milliseconds on the URL. eg <a href="http://slowsite.herokuapp.com/1234">http://slowsite.herokuapp.com/1234</a></body></html>');
+})
+
+var server = app.listen(80, function () {
 
   var host = server.address().address
   var port = server.address().port
