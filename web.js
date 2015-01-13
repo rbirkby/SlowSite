@@ -11,7 +11,9 @@ app.get('/', function (req, res) {
   res.send('<html><body>Pass a delay in milliseconds on the URL. eg <a href="http://slowsite.herokuapp.com/1234">http://slowsite.herokuapp.com/1234</a></body></html>');
 })
 
-var server = app.listen(80, function () {
+var port = process.env.PORT || 3000;
+
+var server = app.listen(port, function () {
 
   var host = server.address().address
   var port = server.address().port
